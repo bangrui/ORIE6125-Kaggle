@@ -31,15 +31,13 @@ class SVMTrainer:
 		# Find all the support vectors
 		support_vector_indices = alpha > 0
 		# only save the support vectors to reduce the space
-		support_multipliers = alpha[support_vector_indices]
+		weights = alpha[support_vector_indices]
 		support_vectors = X[support_vector_indices]
 		support_vector_labels = y[support_vector_indices]
 
 
-		return SVMPredictor(
-			weights=support_multipliers,
-			support_vectors=support_vectors,
-			support_vector_labels=support_vector_labels)
+		return SVMPredictor(weights,
+			support_vectors,support_vector_labels)
 
 	def compute_alpha(self, X, y):
 		"""
@@ -75,7 +73,7 @@ class SVMTrainer:
 		# Lagrange multipliers
 		return np.ravel(solution['x'])
 		"""
-
+	
 class SVMPredictor:
 	""" Attributes:
 	_weights: the weights of each support vector
