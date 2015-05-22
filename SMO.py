@@ -16,6 +16,9 @@ v1.0: (1) Solves the dual QP of a standard (linear) soft margin SVM
 """
 
 import numpy as np
+import sys
+
+sys.dont_write_bytecode = True
 
 class SMO:
 

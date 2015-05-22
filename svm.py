@@ -2,6 +2,9 @@ import numpy as np
 import cvxopt
 import random
 from SMO import *
+import sys
+
+sys.dont_write_bytecode = True
 
 class SVMTrainer:
 	def __init__(self, c, eps, tol):
@@ -124,6 +127,7 @@ def kernel(X1,X2):
 if __name__ == '__main__':
      # Read in the data
     train = np.genfromtxt('train_2cat.csv',delimiter = ',')
+    """    
     X = train[:,1:94]
     Y = (train[:,94]).ravel()
 
@@ -132,17 +136,28 @@ if __name__ == '__main__':
     sample = random.sample(range(len(Y)),1000)
     X = X[sample,]
     Y = Y[sample]
-
+    """
     # Create a svm predictor
     C = 0.1
     tol = 0.001
     eps = 0.001
     svm = SVMTrainer(C, eps, tol)
+    X = np.array([[-1,-1],[1,1]])
+    Y = np.array([-1,1,])
+    
+    SMOtestObj = SMO(X,Y,C,tol,eps)
+    SMOtestObj.SMO_main()
     predictor = svm.train(X,Y)
-
+    
+    
+    """
     # Randomly pick 1000 data as the test data
     sample2 = random.sample(range(len(Y)),1000)
     test_X = X[sample2,]
-
+    """
+    
     # Make prediction
-    predict_Y = predictor.predict(test_X)
+    #predict_Y = predictor.predict(test_X)
+    
+    
+    
