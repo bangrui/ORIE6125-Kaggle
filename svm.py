@@ -141,7 +141,7 @@ if __name__ == '__main__':
     predictor = svm.train(X,Y)
 
     # Randomly pick 1000 data as the test data
-    sample2 = random.sample(range(len(Y)),100)
+    sample2 = random.sample(range(len(Y)),1000)
     test_X = X[sample2,]
 
     # Make prediction
